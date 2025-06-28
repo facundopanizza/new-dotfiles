@@ -22,6 +22,7 @@ alias cat='bat'
 alias grep='rg'
 alias find='fd'
 alias cd='z'
+alias waifu='node ~/.config/scripts/waifu-wallpaper.js'
 
 # Git aliases - Essential for TypeScript development
 alias g='git'
@@ -158,7 +159,6 @@ alias pipes='pipes.sh'
 alias clock='tty-clock -c'
 
 # Waifu wallpaper commands
-alias waifu='~/.config/scripts/waifu-wallpaper.sh'
 alias waifu-start='~/.config/scripts/waifu-rotator.sh start'
 alias waifu-stop='~/.config/scripts/waifu-rotator.sh stop'
 alias waifu-now='~/.config/scripts/waifu-rotator.sh now'

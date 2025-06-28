@@ -2,7 +2,7 @@
 
 # Waifu Categories Submenu
 SCRIPT_DIR="$(dirname "$0")/../scripts"
-WAIFU_SCRIPT="$SCRIPT_DIR/waifu-wallpaper.sh"
+WAIFU_SCRIPT="node $SCRIPT_DIR/waifu-wallpaper.js"
 
 # Get category from argument
 category="$1"

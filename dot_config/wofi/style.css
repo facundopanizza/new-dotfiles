@@ -1,7 +1,7 @@
 /* Catppuccin Macchiato theme for Wofi */
 
 * {
-    font-family: "FiraCode Nerd Font";
+    font-family: "FiraCode Nerd Font", "Noto Color Emoji", sans-serif;
     font-size: 14px;
 }
 

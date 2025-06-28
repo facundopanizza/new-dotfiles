@@ -31,7 +31,7 @@
 @define-color rosewater #f4dbd6;
 
 * {
-    font-family: "FiraCode Nerd Font", "Font Awesome 6 Free";
+    font-family: "FiraCode Nerd Font", "Noto Color Emoji", "Font Awesome 6 Free";
     font-size: 13px;
     min-height: 0;
 }

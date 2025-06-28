@@ -4,7 +4,7 @@
 # Automatically changes wallpaper at specified intervals
 
 SCRIPT_DIR="$(dirname "$0")"
-WAIFU_SCRIPT="$SCRIPT_DIR/waifu-wallpaper.sh"
+WAIFU_SCRIPT="node $SCRIPT_DIR/waifu-wallpaper.js"
 PID_FILE="$HOME/.cache/waifu-rotator.pid"
 
 # Default settings
@@ -28,7 +28,7 @@ start_rotation() {
     # Start rotation in background
     (
         while true; do
-            "$WAIFU_SCRIPT" "$source"
+            $WAIFU_SCRIPT "$source"
             sleep "$interval"
         done
     ) &
@@ -76,7 +76,7 @@ restart_rotation() {
 change_now() {
     local source=${1:-$SOURCE}
     echo "🔄 Changing wallpaper now..."
-    "$WAIFU_SCRIPT" "$source"
+    $WAIFU_SCRIPT "$source"
 }
 
 # Help function

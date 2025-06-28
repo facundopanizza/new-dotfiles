@@ -591,11 +591,11 @@ A comprehensive wallpaper management system with multiple sources, favorites, hi
 
 ### **Usage Examples**
 
-```bash
 # Manual wallpaper commands
-~/.config/scripts/waifu-wallpaper.sh random
-~/.config/scripts/waifu-wallpaper.sh waifu-im maid
-~/.config/scripts/waifu-wallpaper.sh safebooru "1girl school_uniform"
+```bash
+node ~/.config/scripts/waifu-wallpaper.js random
+node ~/.config/scripts/waifu-wallpaper.js waifu-im maid
+node ~/.config/scripts/waifu-wallpaper.js safebooru "1girl school_uniform"
 
 # Auto-rotation commands  
 ~/.config/scripts/waifu-rotator.sh start 1800 random  # 30min rotation
