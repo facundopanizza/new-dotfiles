@@ -9,8 +9,8 @@ swww-daemon &
 # Wait a moment for daemon to start
 sleep 1
 
-# Set wallpaper
-swww img ~/Wallpapers/1337277.jpeg
+# Restore wallpaper
+node ~/.config/scripts/restore-wallpaper.js
 
 # Start other applications
 nm-applet --indicator &

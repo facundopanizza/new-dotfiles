@@ -9,11 +9,26 @@ const http = require('http');
 // Configuration
 const WALLPAPER_DIR = path.join(process.env.HOME, '.cache', 'waifu-wallpapers');
 const CURRENT_WALLPAPER = path.join(WALLPAPER_DIR, 'current.jpg');
+const PERSISTENT_WALLPAPER = path.join(process.env.HOME, '.config', 'current-wallpaper.txt');
 const MAX_CACHE_SIZE = 50;
 
 // Ensure wallpaper directory exists
 if (!fs.existsSync(WALLPAPER_DIR)) {
     fs.mkdirSync(WALLPAPER_DIR, { recursive: true });
+}
+
+// Utility function for notifications
+function notify(title, message, icon = null, urgency = 'normal') {
+    try {
+        let cmd = `notify-send "${title}" "${message}" --urgency=${urgency}`;
+        if (icon) {
+            cmd += ` --icon="${icon}"`;
+        }
+        execSync(cmd, { stdio: 'ignore' });
+    } catch (error) {
+        // Notification failed, but that's not critical
+        console.log(`${title}: ${message}`);
+    }
 }
 
 // Utility function to make HTTP requests
@@ -317,24 +332,24 @@ function setWallpaper(wallpaperFile) {
         // Set with swww
         execSync(`swww img "${CURRENT_WALLPAPER}" --transition-type wipe --transition-duration 2`, { stdio: 'inherit' });
 
+        // Save wallpaper path for persistence
+        try {
+            fs.writeFileSync(PERSISTENT_WALLPAPER, CURRENT_WALLPAPER);
+        } catch (error) {
+            console.log('⚠️ Failed to save persistent wallpaper path');
+        }
+
         // Add to history
-        const historyScript = path.join(process.env.HOME, '.config', 'wofi', 'waifu-history.sh');
+        const historyScript = path.join(process.env.HOME, '.config', 'wofi', 'waifu-history.js');
         if (fs.existsSync(historyScript)) {
             try {
-                execSync(`bash "${historyScript}" add "${CURRENT_WALLPAPER}"`, { stdio: 'inherit' });
+                execSync(`node "${historyScript}" add "${CURRENT_WALLPAPER}"`, { stdio: 'inherit' });
             } catch (error) {
                 console.log('⚠️ Failed to add to history');
             }
         }
 
         console.log(`✨ Wallpaper set: ${path.basename(wallpaperFile)}`);
-
-        // Send notification
-        try {
-            execSync(`notify-send "🎌 Waifu Wallpaper" "New wallpaper applied!" --icon="${CURRENT_WALLPAPER}"`, { stdio: 'inherit' });
-        } catch (error) {
-            // Notification failed, but that's not critical
-        }
 
     } catch (error) {
         console.log(`❌ Failed to set wallpaper: ${error.message}`);
@@ -377,6 +392,15 @@ async function main() {
     const source = args[0] || 'random';
     const tags = args[1] || '';
 
+    // Show loading notification
+    const sourceDisplayName = source === 'random' ? 'Random Source' : 
+                             source === 'waifu-im' ? 'Waifu.im (HQ)' :
+                             source === 'waifu-pics' ? 'Waifu.pics' :
+                             source === 'cached' ? 'Cached' :
+                             source.charAt(0).toUpperCase() + source.slice(1);
+    
+    notify('🎌 Loading Wallpaper', `Fetching from ${sourceDisplayName}...`, null, 'low');
+
     const sources = {
         'waifu-im': fetchWaifuIm,
         'konachan': fetchKonachan,
@@ -388,10 +412,14 @@ async function main() {
     };
 
     let wallpaper = null;
+    let actualSource = source;
 
     try {
         if (source === 'cached') {
             wallpaper = getCachedWallpaper();
+            if (!wallpaper) {
+                throw new Error('No cached wallpapers available');
+            }
         } else if (sources[source]) {
             wallpaper = await sources[source](tags);
         } else if (source === 'random') {
@@ -401,6 +429,7 @@ async function main() {
             for (let attempt = 1; attempt <= 5; attempt++) {
                 const randomSource = sourceNames[Math.floor(Math.random() * sourceNames.length)];
                 console.log(`🎲 Trying source: ${randomSource} (attempt ${attempt})`);
+                actualSource = randomSource;
 
                 try {
                     wallpaper = await sources[randomSource](tags);
@@ -417,6 +446,10 @@ async function main() {
             if (!wallpaper) {
                 console.log('🔄 All online sources failed, using cached wallpaper...');
                 wallpaper = getCachedWallpaper();
+                actualSource = 'cached';
+                if (!wallpaper) {
+                    throw new Error('All sources failed and no cached wallpapers available');
+                }
             }
         } else {
             throw new Error(`Unknown source: ${source}`);
@@ -425,12 +458,24 @@ async function main() {
         if (wallpaper && fs.existsSync(wallpaper)) {
             setWallpaper(wallpaper);
             cleanupCache();
+            
+            // Show success notification
+            const finalSourceName = actualSource === 'waifu-im' ? 'Waifu.im (HQ)' :
+                                   actualSource === 'waifu-pics' ? 'Waifu.pics' :
+                                   actualSource === 'cached' ? 'Cache' :
+                                   actualSource.charAt(0).toUpperCase() + actualSource.slice(1);
+            
+            notify('✨ Wallpaper Applied', `New wallpaper from ${finalSourceName}!`, CURRENT_WALLPAPER, 'normal');
         } else {
             throw new Error('Failed to fetch wallpaper');
         }
 
     } catch (error) {
         console.log(`❌ ${error.message}`);
+        
+        // Show failure notification
+        notify('❌ Wallpaper Failed', `Failed to load wallpaper: ${error.message}`, null, 'critical');
+        
         process.exit(1);
     }
 }

@@ -159,9 +159,9 @@ alias pipes='pipes.sh'
 alias clock='tty-clock -c'
 
 # Waifu wallpaper commands
-alias waifu-start='~/.config/scripts/waifu-rotator.sh start'
-alias waifu-stop='~/.config/scripts/waifu-rotator.sh stop'
-alias waifu-now='~/.config/scripts/waifu-rotator.sh now'
+alias waifu-start='node ~/.config/scripts/waifu-rotator.js start'
+alias waifu-stop='node ~/.config/scripts/waifu-rotator.js stop'
+alias waifu-now='node ~/.config/scripts/waifu-rotator.js now'
 
 # Disable greeting
 set fish_greeting
