@@ -109,12 +109,12 @@
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
-        "format": "󰻠 {usage}%",
-        "tooltip": false,
+        "format": "󰍛 {usage}%",
+        "tooltip": "CPU Usage",
         "interval": 2
     },
     "memory": {
-        "format": "󰍛 {percentage}%",
+        "format": " {percentage}%",
         "tooltip-format": "Memory: {used:0.1f}G/{total:0.1f}G"
     },
     "backlight": {
@@ -126,9 +126,6 @@
         ],
         "on-scroll-up": "brightnessctl set 5%+",
         "on-scroll-down": "brightnessctl set 5%-"
-    },
-    "memory": {
-        "format": "{}% "
     },
     "temperature": {
         // "thermal-zone": 2,
