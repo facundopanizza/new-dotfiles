@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 
-swww init &
+# Kill any existing swww processes first
+pkill swww
 
-swww img ~/Wallpapers/1337277.jpeg &
+# Initialize swww daemon
+swww-daemon &
 
+# Wait a moment for daemon to start
+sleep 1
+
+# Set wallpaper
+swww img ~/Wallpapers/1337277.jpeg
+
+# Start other applications
 nm-applet --indicator &
 
 waybar &

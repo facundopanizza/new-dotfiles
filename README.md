@@ -116,6 +116,8 @@ chezmoi apply
 | `Super + W` | Open web browser |
 | `Super + S` | Screenshot menu |
 | `Super + G` | DuckDuckGo search menu |
+| `Super + B` | Waifu wallpaper menu |
+| `Super + Shift + B` | Save current wallpaper to favorites |
 
 ### Navigation
 | Key Combination | Action |
@@ -540,6 +542,79 @@ code .                       # Open in VS Code
 - **Quick package management** with multiple package manager support
 
 This setup provides a modern, efficient development environment perfectly suited for TypeScript/JavaScript development! 🔥
+
+## 🎌 Waifu Wallpaper System
+
+A comprehensive wallpaper management system with multiple sources, favorites, history, and auto-rotation features.
+
+### **Quick Access**
+- **`Super + B`** - Open waifu wallpaper menu
+- **`Super + Shift + B`** - Save current wallpaper to favorites
+
+### **Features**
+
+#### **🎨 Multiple Sources**
+- **waifu.pics** - High-quality anime wallpapers
+- **waifu.im** - Premium HQ illustrations  
+- **Safebooru** - Extensive anime image board
+- **Konachan** - Ultra-HQ anime wallpapers
+
+#### **📂 Organized Categories**
+- **Anime Categories**: School girls, magical girls, sword fighters, seasonal themes
+- **Style Categories**: Minimalist, colorful, dark/gothic, pastel, glowing effects
+- **Quality Options**: Ultra HQ, mobile optimized, 4K desktop, artistic styles
+- **Special Categories**: Maid outfits, neko girls, fox girls, princess styles
+
+#### **💖 Favorites System**
+- Save current wallpaper to favorites with timestamp
+- Browse and apply favorite wallpapers
+- Organized by date and time for easy navigation
+- Quick access through main menu
+
+#### **📜 History Tracking**
+- Automatic history of all applied wallpapers
+- Browse recently used wallpapers
+- Restore previous wallpapers with one click
+- Keeps last 50 wallpapers for quick access
+
+#### **🔄 Auto-Rotation**
+- Start auto-rotation with 30min or 1hr intervals
+- Background daemon service
+- Change wallpaper immediately with "Change Now"
+- Check rotation status anytime
+
+#### **🛠️ Management Tools**
+- Open cache folder to browse downloaded wallpapers
+- Clear cache to free up space
+- Clear favorites and history when needed
+- Smart caching system prevents re-downloads
+
+### **Usage Examples**
+
+```bash
+# Manual wallpaper commands
+~/.config/scripts/waifu-wallpaper.sh random
+~/.config/scripts/waifu-wallpaper.sh waifu-im maid
+~/.config/scripts/waifu-wallpaper.sh safebooru "1girl school_uniform"
+
+# Auto-rotation commands  
+~/.config/scripts/waifu-rotator.sh start 1800 random  # 30min rotation
+~/.config/scripts/waifu-rotator.sh stop              # Stop rotation
+~/.config/scripts/waifu-rotator.sh status            # Check status
+
+# Favorites management
+~/.config/wofi/waifu-favorites.sh save               # Save current
+~/.config/wofi/waifu-favorites.sh list               # Browse favorites
+
+# History management
+~/.config/wofi/waifu-history.sh list                 # Browse history
+```
+
+### **File Locations**
+- **Cache**: `~/.cache/waifu-wallpapers/`
+- **Favorites**: `~/.config/waifu-favorites/`
+- **History**: `~/.config/waifu-history.txt`
+- **Current**: `~/.cache/current-wallpaper.jpg`
 
 ---
 
