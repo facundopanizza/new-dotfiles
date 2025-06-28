@@ -70,7 +70,6 @@ alias code='code .'
 alias c='code .'
 
 # TypeScript/Node.js Development aliases
-alias n='npm'
 alias ni='npm install'
 alias nid='npm install --save-dev'
 alias nig='npm install -g'
