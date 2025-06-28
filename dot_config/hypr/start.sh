@@ -4,10 +4,12 @@ swww init &
 
 swww img ~/Wallpapers/1337277.jpeg &
 
-nm-applit --indicator &
+nm-applet --indicator &
 
 waybar &
 
-dunst &
+mako &
+
+hypridle &
 
 hyprctl setcursor Bibata-Modern-Ice 24

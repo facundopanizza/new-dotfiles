@@ -1,0 +1,145 @@
+[manager]
+ratio = [1, 4, 3]
+sort_by = "alphabetical"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+linemode = "none"
+show_hidden = false
+show_symlink = true
+scrolloff = 5
+
+[preview]
+tab_size = 2
+max_width = 600
+max_height = 900
+cache_dir = ""
+
+[opener]
+edit = [
+	{ run = 'ghostty -e $EDITOR "$1"', desc = "Edit", block = true },
+]
+open = [
+	{ run = 'xdg-open "$1"', desc = "Open" },
+]
+reveal = [
+	{ run = 'xdg-open "$(dirname "$1")"', desc = "Reveal" },
+]
+extract = [
+	{ run = 'unar "$1"', desc = "Extract here" },
+]
+play = [
+	{ run = 'mpv "$1"', desc = "Play" },
+	{ run = 'mpv --shuffle "$1"', desc = "Play (shuffle)" },
+]
+
+[open]
+rules = [
+	{ name = "*/", use = [ "edit", "open", "reveal" ] },
+	{ mime = "text/*", use = [ "edit", "reveal" ] },
+	{ mime = "image/*", use = [ "open", "reveal" ] },
+	{ mime = "video/*", use = [ "play", "reveal" ] },
+	{ mime = "audio/*", use = [ "play", "reveal" ] },
+	{ mime = "inode/x-empty", use = [ "edit", "reveal" ] },
+	{ mime = "application/json", use = [ "edit", "reveal" ] },
+	{ mime = "*/javascript", use = [ "edit", "reveal" ] },
+	{ mime = "application/zip", use = [ "extract", "reveal" ] },
+	{ mime = "application/gzip", use = [ "extract", "reveal" ] },
+	{ mime = "application/x-tar", use = [ "extract", "reveal" ] },
+	{ mime = "application/x-bzip2", use = [ "extract", "reveal" ] },
+	{ mime = "application/x-7z-compressed", use = [ "extract", "reveal" ] },
+	{ mime = "application/x-rar", use = [ "extract", "reveal" ] },
+]
+
+[tasks]
+micro_workers = 10
+macro_workers = 25
+bizarre_retry = 5
+image_alloc = 536870912  # 512MB
+image_bound = [0, 0]
+suppress_preload = false
+
+[plugin]
+prepend_preloaders = [
+	{ name = "*", cond = "!mime", run = "mime", multi = true, prio = "high" },
+]
+append_preloaders = []
+prepend_previewers = [
+	{ name = "*/", run = "folder", sync = true },
+]
+append_previewers = [
+	{ name = "*", run = "file" },
+]
+prepend_fetchers = []
+append_fetchers = []
+
+[input]
+# cd
+cd_title = "Change directory:"
+cd_origin = "top-center"
+cd_offset = [ 0, 2, 50, 3 ]
+
+# create - this one is special, it's a 2-element array
+create_title = [ "Create file:", "Create directory:" ]
+create_origin = "top-center"
+create_offset = [ 0, 2, 50, 3 ]
+
+# rename
+rename_title = "Rename:"
+rename_origin = "hovered"
+rename_offset = [ 0, 1, 50, 3 ]
+
+# filter
+filter_title = "Filter:"
+filter_origin = "top-center"
+filter_offset = [ 0, 2, 50, 3 ]
+
+# find - this one is also a 2-element array
+find_title = [ "Find next:", "Find previous:" ]
+find_origin = "top-center"
+find_offset = [ 0, 2, 50, 3 ]
+
+# search
+search_title = "Search via {n}:"
+search_origin = "top-center"
+search_offset = [ 0, 2, 50, 3 ]
+
+# shell - this one is also a 2-element array
+shell_title = [ "Shell:", "Shell (block):" ]
+shell_origin = "top-center"
+shell_offset = [ 0, 2, 50, 3 ]
+
+[confirm]
+# trash
+trash_title = "Move {n} selected file{s} to trash? (y/N)"
+trash_origin = "top-center"
+trash_offset = [ 0, 2, 60, 3 ]
+
+# delete
+delete_title = "Delete {n} selected file{s} permanently? (y/N)"
+delete_origin = "top-center"
+delete_offset = [ 0, 2, 60, 3 ]
+
+# overwrite
+overwrite_title = "Overwrite an existing file? (y/N)"
+overwrite_origin = "top-center"
+overwrite_offset = [ 0, 2, 50, 3 ]
+
+# quit
+quit_title = "Quit Yazi? (y/N)"
+quit_origin = "top-center"
+quit_offset = [ 0, 2, 30, 3 ]
+
+[pick]
+# open
+open_title = "Open with:"
+open_origin = "hovered"
+open_offset = [ 0, 1, 40, 3 ]
+
+[which]
+sort_by = "none"
+sort_sensitive = false
+sort_reverse = false
+
+[log]
+enabled = false

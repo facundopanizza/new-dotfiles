@@ -1,0 +1,58 @@
+# Ghostty Configuration - Catppuccin Macchiato Theme
+
+# Font configuration
+font-family = "FiraCode Nerd Font"
+font-size = 12
+font-thicken = true
+
+# Theme - Catppuccin Macchiato
+background = 24273a
+foreground = cad3f5
+cursor-color = f4dbd6
+selection-background = f4dbd6
+selection-foreground = 24273a
+
+# Normal colors
+palette = 0=#494d64
+palette = 1=#ed8796
+palette = 2=#a6da95
+palette = 3=#eed49f
+palette = 4=#8aadf4
+palette = 5=#f5bde6
+palette = 6=#8bd5ca
+palette = 7=#b8c0e0
+
+# Bright colors
+palette = 8=#5b6078
+palette = 9=#ed8796
+palette = 10=#a6da95
+palette = 11=#eed49f
+palette = 12=#8aadf4
+palette = 13=#f5bde6
+palette = 14=#8bd5ca
+palette = 15=#a5adcb
+
+# Window configuration
+window-decoration = false
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+window-padding-color = background
+
+# Terminal behavior
+scrollback-limit = 10000
+mouse-hide-while-typing = true
+confirm-close-surface = false
+
+# Performance
+unfocused-split-opacity = 0.8
+background-opacity = 0.95
+background-blur-radius = 20
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Shell integration
+shell-integration = fish
+shell-integration-features = cursor,sudo,title

@@ -1,0 +1,66 @@
+# Mako notification daemon config - Catppuccin Macchiato
+
+# Appearance
+background-color=#24273a
+text-color=#cad3f5
+border-color=#8aadf4
+border-size=2
+border-radius=12
+padding=15
+margin=10
+
+# Font
+font=FiraCode Nerd Font 11
+
+# Position and size
+anchor=top-right
+width=350
+height=100
+max-visible=5
+
+# Behavior
+default-timeout=5000
+ignore-timeout=1
+group-by=summary
+
+# Icons
+max-icon-size=48
+icon-path=/usr/share/icons/Papirus-Dark
+
+# Urgency levels
+[urgency=low]
+background-color=#24273a
+text-color=#939ab7
+border-color=#5b6078
+default-timeout=3000
+
+[urgency=normal]
+background-color=#24273a
+text-color=#cad3f5
+border-color=#8aadf4
+default-timeout=5000
+
+[urgency=critical]
+background-color=#24273a
+text-color=#ed8796
+border-color=#ed8796
+default-timeout=0
+
+# Application specific
+[app-name=volume]
+background-color=#24273a
+text-color=#8aadf4
+border-color=#8aadf4
+group-by=app-name
+
+[app-name=brightness]
+background-color=#24273a
+text-color=#eed49f
+border-color=#eed49f
+group-by=app-name
+
+[app-name=battery]
+background-color=#24273a
+text-color=#a6da95
+border-color=#a6da95
+group-by=app-name

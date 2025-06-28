@@ -1,0 +1,197 @@
+/* Catppuccin Macchiato Theme for Waybar */
+@define-color base   #24273a;
+@define-color mantle #1e2030;
+@define-color crust  #181926;
+
+@define-color text     #cad3f5;
+@define-color subtext0 #a5adcb;
+@define-color subtext1 #b8c0e0;
+
+@define-color surface0 #363a4f;
+@define-color surface1 #494d64;
+@define-color surface2 #5b6078;
+
+@define-color overlay0 #6e738d;
+@define-color overlay1 #8087a2;
+@define-color overlay2 #939ab7;
+
+@define-color blue      #8aadf4;
+@define-color lavender  #b7bdf8;
+@define-color sapphire  #7dc4e4;
+@define-color sky       #91d7e3;
+@define-color teal      #8bd5ca;
+@define-color green     #a6da95;
+@define-color yellow    #eed49f;
+@define-color peach     #f5a97f;
+@define-color maroon    #ee99a0;
+@define-color red       #ed8796;
+@define-color mauve     #c6a0f6;
+@define-color pink      #f5bde6;
+@define-color flamingo  #f0c6c6;
+@define-color rosewater #f4dbd6;
+
+* {
+    font-family: "FiraCode Nerd Font", "Font Awesome 6 Free";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: alpha(@base, 0.9);
+    color: @text;
+    border-radius: 12px;
+    border: 2px solid alpha(@surface0, 0.8);
+}
+
+/* Workspaces */
+#workspaces {
+    background: alpha(@surface0, 0.8);
+    margin: 5px;
+    padding: 0px 5px;
+    border-radius: 10px;
+    border: 2px solid alpha(@surface1, 0.8);
+}
+
+#workspaces button {
+    padding: 5px 10px;
+    margin: 3px;
+    border-radius: 8px;
+    border: none;
+    color: @subtext0;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+#workspaces button.active {
+    color: @base;
+    background: @blue;
+    box-shadow: 0 2px 5px alpha(@blue, 0.4);
+}
+
+#workspaces button:hover {
+    color: @text;
+    background: alpha(@surface2, 0.8);
+    box-shadow: 0 2px 5px alpha(@surface2, 0.4);
+}
+
+/* Window title */
+#window {
+    background: alpha(@surface0, 0.8);
+    margin: 5px;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 2px solid alpha(@surface1, 0.8);
+    color: @text;
+}
+
+/* Clock */
+#clock {
+    background: alpha(@surface0, 0.8);
+    color: @text;
+    margin: 5px;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 2px solid alpha(@surface1, 0.8);
+    font-weight: bold;
+}
+
+/* Right modules */
+#idle_inhibitor,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#backlight,
+#battery,
+#tray {
+    background: alpha(@surface0, 0.8);
+    margin: 5px 2px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 2px solid alpha(@surface1, 0.8);
+    color: @text;
+    transition: all 0.3s ease-in-out;
+}
+
+#idle_inhibitor:hover,
+#pulseaudio:hover,
+#network:hover,
+#cpu:hover,
+#memory:hover,
+#backlight:hover,
+#battery:hover {
+    background: alpha(@surface1, 0.9);
+    box-shadow: 0 2px 5px alpha(@surface1, 0.4);
+}
+
+/* Specific module colors */
+#pulseaudio {
+    color: @blue;
+}
+
+#network {
+    color: @green;
+}
+
+#cpu {
+    color: @peach;
+}
+
+#memory {
+    color: @mauve;
+}
+
+#backlight {
+    color: @yellow;
+}
+
+#battery {
+    color: @green;
+}
+
+#battery.warning {
+    color: @yellow;
+}
+
+#battery.critical {
+    color: @red;
+    animation: blink 0.5s linear infinite alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: alpha(@red, 0.5);
+        color: @base;
+    }
+}
+
+#idle_inhibitor.activated {
+    color: @red;
+    background: alpha(@red, 0.2);
+}
+
+#tray {
+    padding: 5px 5px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: alpha(@red, 0.5);
+}
+
+/* Tooltip */
+tooltip {
+    background: alpha(@base, 0.95);
+    border: 2px solid @surface0;
+    border-radius: 8px;
+    color: @text;
+}
+
+tooltip label {
+    color: @text;
+    padding: 5px;
+}

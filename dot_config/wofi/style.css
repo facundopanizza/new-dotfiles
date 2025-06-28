@@ -1,0 +1,78 @@
+/* Catppuccin Macchiato theme for Wofi */
+
+* {
+    font-family: "FiraCode Nerd Font";
+    font-size: 14px;
+}
+
+window {
+    margin: 0px;
+    border: 2px solid #8aadf4;
+    border-radius: 12px;
+    background-color: rgba(36, 39, 58, 0.95);
+    backdrop-filter: blur(20px);
+}
+
+#input {
+    margin: 10px;
+    border: 2px solid #494d64;
+    border-radius: 8px;
+    color: #cad3f5;
+    background-color: #1e2030;
+    padding: 8px 12px;
+}
+
+#input:focus {
+    border-color: #8aadf4;
+    box-shadow: 0 0 10px rgba(138, 173, 244, 0.3);
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 5px;
+    border: none;
+    color: #cad3f5;
+}
+
+#entry {
+    border: none;
+    border-radius: 8px;
+    margin: 2px;
+    padding: 8px;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+#entry:selected {
+    background-color: rgba(138, 173, 244, 0.2);
+    border: 1px solid #8aadf4;
+}
+
+#entry:hover {
+    background-color: rgba(91, 96, 120, 0.3);
+}
+
+#entry:selected #text {
+    color: #8aadf4;
+    font-weight: bold;
+}
+
+#entry img {
+    margin-right: 8px;
+}
