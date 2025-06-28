@@ -37,10 +37,8 @@
 }
 
 window#waybar {
-    background: alpha(@base, 0.9);
+    background: transparent;
     color: @text;
-    border-radius: 12px;
-    border: 2px solid alpha(@surface0, 0.8);
 }
 
 /* Workspaces */
@@ -105,7 +103,7 @@ window#waybar {
 #battery,
 #tray {
     background: alpha(@surface0, 0.8);
-    margin: 5px 2px;
+    margin: 5px 4px;
     padding: 5px 10px;
     border-radius: 10px;
     border: 2px solid alpha(@surface1, 0.8);

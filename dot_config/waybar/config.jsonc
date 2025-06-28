@@ -15,9 +15,9 @@
         "clock"
     ],
     "modules-right": [
-        "idle_inhibitor",
+        // "idle_inhibitor",
         "pulseaudio",
-        "network",
+        // "network",
         "cpu",
         "memory",
         "backlight",

@@ -56,3 +56,9 @@ cursor-style-blink = false
 # Shell integration
 shell-integration = fish
 shell-integration-features = cursor,sudo,title
+
+# Keybindings for fast cursor movement
+keybind = ctrl+left=text:\x1b[1;5D
+keybind = ctrl+right=text:\x1b[1;5C
+keybind = ctrl+shift+left=text:\x1b[1;6D
+keybind = ctrl+shift+right=text:\x1b[1;6C
